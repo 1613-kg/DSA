@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void merge(int s,int mid,int e,int arr[])
+{
+    int i=s,j=mid;
+     if (arr[mid-1] <= arr[j]) {
+        return;
+    }
+    while(i<mid && j<=e)
+    {
+        if(arr[i]>arr[j]){
+             int value = arr[j];
+            int index = j;
+ 
+            while (index != i) {
+                arr[index] = arr[index - 1];
+                index--;
+            }
+            arr[i] = value;
+ 
+            i++;
+            mid++;
+            j++;
+        }
+        else i++;
+    }
+    return;
+}
+
+void mergeSort(int s,int e,int arr[])
+{
+    if(e>s){
+        int mid = s + (e-s)/2;
+        mergeSort(s,mid,arr);
+        mergeSort(mid+1,e,arr);
+        //cout<<s<<" "<<e<<endl;
+        merge(s,mid+1,e,arr);
+    }
+    return;
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    mergeSort(0,n,arr);
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+}
