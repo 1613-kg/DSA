@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> arr;
+int ind = -1;
+
+void insert(int data){
+    arr.push_back(data);
+    ind++;
+}
+
+void pop(){
+    if(ind!=-1){
+        arr.pop_back();
+        ind--;
+    }
+    else{
+        cout<<"Your stack is empty!"<<endl;
+    }
+}
+
+int top(){
+     if(ind!=-1){
+        return arr[ind];
+    }
+    else{
+        cout<<"Your stack is empty!"<<endl;
+    }
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    while(n--){
+       int type;
+       cin>>type;
+       if(type==1){
+           int data;
+           cin>>data;
+           insert(data);
+       }
+       else if(type==2){
+          pop();
+       }
+       else{
+          int x = top();
+          cout<<x<<endl;
+          continue;
+       }
+       for(auto &x:arr){
+           cout<<x<<" ";
+       }
+       cout<<endl;
+    }
+   return 0;
+}
